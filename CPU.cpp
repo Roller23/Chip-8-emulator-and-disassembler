@@ -113,9 +113,12 @@ Chip8::Chip8(void) {
 }
 
 void Chip8::executeCycle(void) {
+  // Fetch the next opcode
   uint8_t first_byte = this->memory[this->program_counter];
   uint8_t second_byte = this->memory[this->program_counter + 1];
   this->current_opcode = (first_byte << 8) | second_byte;
+
+  // Execute it
   this->executeOpcode();
   if (this->timer_counter == 0) {
     // update timers at 60Hz
