@@ -10,7 +10,7 @@
 #define MS 1000
 #define SEC (MS * 1000)
 #define DEBUG 0
-#define CYCLES_PER_SECOND 600
+#define CYCLES_PER_SECOND 500
 
 #define WHITE_COLOR 1
 #define BLACK_COLOR 2
@@ -165,7 +165,7 @@ void Chip8::runEmu(void) {
     }
     this->checkInput();
     this->executeCycle();
-    usleep(SEC / CYCLES_PER_SECOND);
+    usleep(SEC / CYCLES_PER_SECOND); // 500Hz
   }
 }
 
