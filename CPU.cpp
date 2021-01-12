@@ -33,7 +33,7 @@ static const char keyboard[] = {
   'z', 'x', 'c', 'v'
 };
 
-const static uint8_t fontset[80] = { 
+const static uint8_t const fontset[] = { 
   0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
   0x20, 0x60, 0x20, 0x20, 0x70, // 1
   0xF0, 0x10, 0xF0, 0x80, 0xF0, // 2
@@ -72,14 +72,13 @@ void Chip8::drawScreen(void) {
     for (int x = 0; x < SCREEN_WIDTH; x++) {
       if (this->screen[(y * SCREEN_WIDTH) + x] == 0) {
         CHANGE_COLOR(BLACK_COLOR);
-        mvprintw(y, x*2, "  ");
+        mvprintw(y, x * 2, "  ");
       } else {
         CHANGE_COLOR(WHITE_COLOR);
-        mvprintw(y, x*2, "  ");
+        mvprintw(y, x * 2, "  ");
       }
     }
   }
-  // mvprintw(SCREEN_HEIGHT, 0, "Key = %d   ", getKey());
   refresh();
   this->should_draw = false;
 }
@@ -102,7 +101,7 @@ Chip8::Chip8(void) {
   std::srand(std::time(0));
   for (int i = 0; i < 80; i++) {
     this->memory[i] = fontset[i];
-  }	
+  }
   initscr();
   cbreak();
   noecho();
